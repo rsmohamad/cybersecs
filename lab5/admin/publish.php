@@ -53,6 +53,7 @@
     <title>Vote Publish - Vulnerable Voting System</title>
 
     <script>
+
         function validateVoting() {
             var ids = ['txt_topic', 'txt_option_a', 'txt_option_b', 'txt_option_c', 'txt_option_d']
             
@@ -64,8 +65,11 @@
                 }
             }
 
-            return errmsg;
+            document.getElementById('err_publish').innerHTML = errmsg;
+
+            return errmsg === "";
         }
+        
     </script>
 
 </head>

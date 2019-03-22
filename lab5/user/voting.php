@@ -51,9 +51,21 @@
     <title>User Voting - Vulnerable Voting System</title>
 
     <script>
+
         function validateVote() {
-            return "haha";
+            const opt = document.getElementById("radio_option").value;
+            const topic = document.getElementById("radio_topic").value;
+
+            var errmsg = "";
+            if (!(opt === '1' && opt === '2' && opt === '3' && opt === '4')) {
+                errmsg += "Option not selected <br/>";
+            } else if (topic == "") {
+                errmsg += "Topic not selected";
+            }
+
+            return errmsg === "";
         }
+        
     </script>
 </head>
 
@@ -117,9 +129,9 @@
         </table>
         <br />
         My Option:
-        <input type='RADIO' id='radio_option' name='radio_option' value='1'>A / 
-        <input type='RADIO' id='radio_option' name='radio_option' value='2'>B / 
-        <input type='RADIO' id='radio_option' name='radio_option' value='3'>C /
+        <input type='RADIO' id='radio_option' name='radio_option' value='1'>A />
+        <input type='RADIO' id='radio_option' name='radio_option' value='2'>B />
+        <input type='RADIO' id='radio_option' name='radio_option' value='3'>C />
         <input type='RADIO' id='radio_option' name='radio_option' value='4'>D
         <br />
         <input type='HIDDEN' id='txt_search' name='txt_search' value='' />

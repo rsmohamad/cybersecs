@@ -113,15 +113,19 @@
             if (phone.length == 0) {
                 errmsg += "Address must be filled";
             }
-
-            return errmsg;
+            
+            document.getElementById("err_upload").innerHTML = errmsg;
+            return errmsg=="";
         }
 
         function validatePassword() {
             var passwd = document.getElementById("pwd_new").value;
             var confirm = document.getElementById("pwd_confirm").value;
+            document.getElementById("err_change").innerHTML = 
+                passwd === confirm ? "" : "Passwords dont match";
             return passwd === confirm;
         }
+        
     </script>
 
 </head>
@@ -180,51 +184,30 @@
         <span id='err_upload'></span>
     </font>
     Name: <?=$row["name"];?><br />
-
     Email: <?=$row["email"];?><br />
-
     Phone: <?=$row["phone"];?><br />
-
     Address: <?=$row["address"];?><br />
 
 
-
     <h3>Update Information:</h3>
-
     <font color='#FF0000'>
-
         <span id='err_update'><?=$errmsgUpdate;?></span>
-
     </font>
 
     <form id='form_update' name='form_update' enctype='multipart/form-data' method='POST' action='profile.php?login=<?=$email;?>'>
-
         Phone: <input type='TEXT' id='txt_phone' name='txt_phone' value='' size='11' /><br />
-
         Address: <input type='TEXT' id='txt_address' name='txt_address' value='' size='80' /><br />
-
         <input type='SUBMIT' id='submit_update' name='submit_update' value='Update' onclick='javascript: return validateInfo();' /><br />
-
     </form>
 
-
-
     <h3>Change Password:</h3>
-
     <font color='#FF0000'>
-
         <span id='err_change'><?=$errmsgChange;?></span>
-
     </font>
-
     <form id='form_change' name='form_change' method='POST' action='profile.php?login=<?=$email;?>'>
-
         New Password: <input type='PASSWORD' id='pwd_new' name='pwd_new' value='' size='16' /><br />
-
         Confirm Passowrd: <input type='PASSWORD' id='pwd_confirm' name='pwd_confirm' value='' size='16' /><br />
-
         <input type='SUBMIT' id='submit_change' name='submit_change' value='Change' onclick='javascript: return validatePassword();' /><br />
-
     </form>
 
 </body>

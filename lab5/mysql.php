@@ -74,10 +74,10 @@
         return $rows;
     }
 
-    function createUser($conn, $email, $password, $name, $hkid, $phone, $address, $status) {
+    function createUser($conn, $email, $password, $name, $hkid, $phone, $address, $status, $secret) {
         $sql = "";
-        $sql .= "INSERT INTO User (email, password, name, hkid, phone, address, status)";
-        $sql .= "VALUES ('".$email."', '".$password."', '".$name."', '".$hkid."','".$phone."', '".$address."', '".$status."') ";
+        $sql .= "INSERT INTO User (email, password, name, hkid, phone, address, status, secret)";
+        $sql .= "VALUES ('".$email."', '".$password."', '".$name."', '".$hkid."','".$phone."', '".$address."', '".$status."', '".$secret."') ";
         $res = mysql_query($sql, $conn);
         return $res;
     }
@@ -181,5 +181,20 @@
         $sql = "UPDATE User SET status='".$status."' WHERE email='".$email."'";
         $res = mysql_query($sql, $conn);
         return $res;
+    }
+
+    function retrieveUserByMaxId($conn) {
+        $sql = "";
+        $sql .= "SELECT LPAD(CONVERT(MAX(_id)+1, CHAR(16)), 16, '0') AS max_id ";
+        $sql .= "FROM User ";
+        $res = mysql_query($sql, $conn);
+        if ($res) {
+        $rows = array();
+        while ($row = mysql_fetch_assoc($res)) {
+        $rows[] = $row;
+        }
+        mysql_free_result($res);
+        }
+        return $rows;
     }
 ?>

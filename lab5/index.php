@@ -20,9 +20,7 @@ if (isset($_POST["submit_login"])) {
         }
         else if ($rows[0]["status"]!='E') {
             $errmsg .= "Account disabled!<br />";
-        }
-
-        else {
+        } else {
             $row = $rows[0];
             $_SESSION["userId"] = $row["_id"];
             $_SESSION["userName"] = $row["name"];
